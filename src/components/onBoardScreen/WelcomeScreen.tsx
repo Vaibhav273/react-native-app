@@ -1,27 +1,45 @@
 import {
     Dimensions,
     ImageBackground,
-    SafeAreaView,
+    KeyboardAvoidingView,
     StyleSheet,
     Text,
+    TextInput,
     TouchableOpacity,
     View,
 } from "react-native";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
 import { RootStackParamList } from "../../../types";
 import Spacing from "../../theme/Space";
-import FontSize from "../../theme/FontSize";
 import Colors from "../../theme/Colors";
 import Font from "../../theme/Font";
+
 const { height } = Dimensions.get("window");
 
 type Props = NativeStackScreenProps<RootStackParamList, "Welcome">;
 
 const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [internalValue, setInternalValue] = useState('');
+
+    const onChangeText = (val: string) => {
+
+    }
+
     return (
-        <SafeAreaView>
-            <View>
+        <View
+            style={[
+                styles.container,
+                { justifyContent: "space-between" }
+            ]}
+        >
+            <View
+                style={{
+                    paddingHorizontal: Spacing * 2,
+                    marginTop: Spacing * 2,
+                }}>
                 <ImageBackground
                     style={{
                         height: height / 2.5,
@@ -29,97 +47,135 @@ const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
                     resizeMode="contain"
                     source={require("../../../assets/images/welcome-img.png")}
                 />
-                <View
+                <Text
                     style={{
-                        paddingHorizontal: Spacing * 4,
-                        paddingTop: Spacing * 4,
+                        fontSize: 24,
+                        fontFamily: Font["outfit-medium"],
+                        marginTop: Spacing * 2
                     }}
                 >
-                    <Text
-                        style={{
-                            fontSize: FontSize.xxLarge,
-                            color: Colors.primary,
-                            fontFamily: Font["poppins-bold"],
-                            textAlign: "center",
-                        }}
-                    >
-                        Discover Your Dream Job here
-                    </Text>
+                    Welcome Zenith
+                </Text>
 
-                    <Text
-                        style={{
-                            fontSize: FontSize.small,
-                            color: Colors.text,
-                            fontFamily: Font["poppins-regular"],
-                            textAlign: "center",
-                            marginTop: Spacing * 2,
-                        }}
-                    >
-                        Explore all the existing job roles based or your interest and study
-                        major
-                    </Text>
-                </View>
-                <View
+                <Text
                     style={{
-                        paddingHorizontal: Spacing * 2,
-                        paddingTop: Spacing * 6,
-                        flexDirection: "row",
+                        fontSize: 17,
+                        color: Colors.text,
+                        fontFamily: Font["outfit-regular"],
                     }}
                 >
+                    Experience the best in class workspaces Elevate your work game today
+                </Text>
+            </View>
+            <View
+                style={{
+                    paddingHorizontal: Spacing * 2,
+                    paddingTop: Spacing * 2,
+                }}
+            >
+                <View>
+                    <View>
+                        <TextInput
+                            placeholder='Enter your Mobile Number'
+                            autoFocus={false}
+                            autoComplete='tel'
+                            keyboardType='phone-pad'
+                            textContentType='telephoneNumber'
+                            onChangeText={(phoneNumber) => setPhoneNumber(phoneNumber)}
+                            style={{
+                                borderWidth: 1,
+                                padding: Spacing,
+                                borderRadius: Spacing * 1.5,
+                                marginBottom: Spacing * 3,
+                                borderColor: Colors.text
+                            }}
+                        />
+
+                        {/* <OTPTextInput ref={e => (otpInput = e)} > */}
+                    </View>
+                </View>
+
+                <View
+                    style={{
+                        flexDirection: "column",
+                        alignItems: "center"
+                    }}>
                     <TouchableOpacity
-                        onPress={() => navigate("Login")}
+                        onPress={() => { }}
                         style={{
                             backgroundColor: Colors.primary,
                             paddingVertical: Spacing * 1.5,
                             paddingHorizontal: Spacing * 2,
-                            width: "48%",
-                            borderRadius: Spacing,
-                            shadowColor: Colors.primary,
-                            shadowOffset: {
-                                width: 0,
-                                height: Spacing,
-                            },
-                            shadowOpacity: 0.3,
-                            shadowRadius: Spacing,
+                            width: "55%",
+                            borderRadius: Spacing * 1.5,
                         }}
                     >
                         <Text
                             style={{
-                                fontFamily: Font["poppins-bold"],
-                                color: Colors.onPrimary,
-                                fontSize: FontSize.large,
-                                textAlign: "center",
-                            }}
-                        >
-                            Login
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        onPress={() => navigate("Register")}
-                        style={{
-                            paddingVertical: Spacing * 1.5,
-                            paddingHorizontal: Spacing * 2,
-                            width: "48%",
-                            borderRadius: Spacing,
-                        }}
-                    >
-                        <Text
-                            style={{
-                                fontFamily: Font["poppins-bold"],
+                                fontFamily: Font["outfit-regular"],
                                 color: Colors.text,
-                                fontSize: FontSize.large,
+                                fontSize: 17,
                                 textAlign: "center",
+                                textTransform: "uppercase"
                             }}
                         >
-                            Register
+                            Submit
                         </Text>
                     </TouchableOpacity>
                 </View>
             </View>
-        </SafeAreaView>
+
+            <View
+                style={{
+                    paddingHorizontal: Spacing * 2,
+                    paddingTop: Spacing * 2,
+                    marginBottom: Spacing * 2
+                }}
+            >
+                <TouchableOpacity
+                    onPress={() => navigate("Register")}
+                    style={{
+                        padding: Spacing,
+                    }}
+                >
+                    <Text style={{
+                        textAlign: 'center',
+                        fontSize: 15,
+                        fontFamily: Font["google-sans-regular"],
+                    }}>
+                        Not a member? Book a free day pass here :)
+                    </Text>
+                </TouchableOpacity>
+            </View>
+        </View >
     );
 };
 
 export default WelcomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: 8,
+        backgroundColor: 'aliceblue',
+    },
+    borderStyleBase: {
+        width: 30,
+        height: 45
+    },
+
+    borderStyleHighLighted: {
+        borderColor: "#03DAC6",
+    },
+
+    underlineStyleBase: {
+        width: 30,
+        height: 45,
+        borderWidth: 0,
+        borderBottomWidth: 1,
+    },
+
+    underlineStyleHighLighted: {
+        borderColor: "#03DAC6",
+    },
+});

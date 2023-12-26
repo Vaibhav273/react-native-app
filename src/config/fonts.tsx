@@ -1,5 +1,5 @@
 export default {
-    "poppins-regular": require("../../assets/fonts/Poppins-Regular.ttf"),
-    "poppins-bold": require("../../assets/fonts/Poppins-Bold.ttf"),
-    "poppins-semiBold": require("../../assets/fonts/Poppins-SemiBold.ttf"),
+    "outfit-regular": require("../../assets/fonts/Outfit-Regular.ttf"),
+    "outfit-medium": require("../../assets/fonts/Outfit-Medium.ttf"),
+    "google-sans-regular": require("../../assets/fonts/GoogleSans-Regular.ttf")
 };

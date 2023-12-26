@@ -1,5 +1,5 @@
 export default {
-    "poppins-regular": "poppins-regular",
-    "poppins-bold": "poppins-bold",
-    "poppins-semiBold": "poppins-semiBold",
+    "outfit-regular": "outfit-regular",
+    "outfit-medium": "outfit-medium",
+    "google-sans-regular": "google-sans-regular"
 };
