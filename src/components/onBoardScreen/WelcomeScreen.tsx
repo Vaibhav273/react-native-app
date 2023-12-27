@@ -8,13 +8,15 @@ import {
     TouchableOpacity,
     View,
 } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "../../../types";
 import Spacing from "../../theme/Space";
 import Colors from "../../theme/Colors";
 import Font from "../../theme/Font";
+import Carousel from "react-native-snap-carousel";
+import CarouselCardItem from "./SliderCardItem";
 
 const { height } = Dimensions.get("window");
 
@@ -24,9 +26,27 @@ const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [internalValue, setInternalValue] = useState('');
 
+    const isCarousel = React.useRef(null);
+
+    const SLIDER_WIDTH = Dimensions.get('window').width + 80;
+    const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+
     const onChangeText = (val: string) => {
 
     }
+
+    const data = [
+        {
+            imgUrl: "https://picsum.photos/id/11/200/300",
+        },
+        {
+            imgUrl: "https://picsum.photos/id/10/200/300",
+        },
+        {
+            imgUrl: "https://picsum.photos/id/12/200/300",
+        },
+    ];
+
 
     return (
         <View
@@ -40,12 +60,17 @@ const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
                     paddingHorizontal: Spacing * 2,
                     marginTop: Spacing * 2,
                 }}>
-                <ImageBackground
-                    style={{
-                        height: height / 2.5,
-                    }}
-                    resizeMode="contain"
-                    source={require("../../../assets/images/welcome-img.png")}
+
+                <Carousel
+                    layout="tinder"
+                    layoutCardOffset={9}
+                    ref={isCarousel}
+                    data={data}
+                    renderItem={CarouselCardItem}
+                    sliderWidth={SLIDER_WIDTH}
+                    itemWidth={ITEM_WIDTH}
+                    inactiveSlideShift={0}
+                    useScrollView={true}
                 />
                 <Text
                     style={{
