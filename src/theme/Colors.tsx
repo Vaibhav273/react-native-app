@@ -1,5 +1,9 @@
 const white = "#fff";
 const black = "#000";
+
+const primary = "#FEDE33";
+const visitorBox = "#bcffb7";
+
 const dark = "#626262";
 const blue = "#1F41BB";
 const gray = "#ECECEC";
@@ -9,7 +13,8 @@ export default {
     darkText: dark,
     text: black,
     background: white,
-    primary: '#FEDE33',
+    primary: primary,
+    visitorBox: visitorBox,
     onPrimary: white,
     active: blue,
     borderWithOpacity: "#1f41bb",

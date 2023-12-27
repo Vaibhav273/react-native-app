@@ -1,7 +1,5 @@
 import {
     Dimensions,
-    ImageBackground,
-    KeyboardAvoidingView,
     StyleSheet,
     Text,
     TextInput,
@@ -18,8 +16,6 @@ import Font from "../../theme/Font";
 import Carousel from "react-native-snap-carousel";
 import CarouselCardItem from "./SliderCardItem";
 
-const { height } = Dimensions.get("window");
-
 type Props = NativeStackScreenProps<RootStackParamList, "Welcome">;
 
 const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
@@ -28,23 +24,16 @@ const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
 
     const isCarousel = React.useRef(null);
 
-    const SLIDER_WIDTH = Dimensions.get('window').width + 80;
-    const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
+    const { height, width } = Dimensions.get('screen');
 
     const onChangeText = (val: string) => {
 
     }
 
     const data = [
-        {
-            imgUrl: "https://picsum.photos/id/11/200/300",
-        },
-        {
-            imgUrl: "https://picsum.photos/id/10/200/300",
-        },
-        {
-            imgUrl: "https://picsum.photos/id/12/200/300",
-        },
+        require("../../../assets/images/image-1.png"),
+        require("../../../assets/images/image-2.png"),
+        require("../../../assets/images/image-3.png"),
     ];
 
 
@@ -55,43 +44,48 @@ const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
                 { justifyContent: "space-between" }
             ]}
         >
-            <View
-                style={{
-                    paddingHorizontal: Spacing * 2,
-                    marginTop: Spacing * 2,
-                }}>
-
+            <View>
                 <Carousel
-                    layout="tinder"
-                    layoutCardOffset={9}
-                    ref={isCarousel}
+                    autoplay={true}
+                    autoplayDelay={1000}
+                    layout={'default'}
                     data={data}
+                    loop={true}
+                    sliderWidth={width}
+                    itemWidth={width * 2}
                     renderItem={CarouselCardItem}
-                    sliderWidth={SLIDER_WIDTH}
-                    itemWidth={ITEM_WIDTH}
                     inactiveSlideShift={0}
                     useScrollView={true}
+                    containerCustomStyle={{ overflow: 'visible' }}
+                    contentContainerCustomStyle={{ overflow: 'visible' }}
                 />
-                <Text
+                <View
                     style={{
-                        fontSize: 24,
-                        fontFamily: Font["outfit-medium"],
-                        marginTop: Spacing * 2
-                    }}
-                >
-                    Welcome Zenith
-                </Text>
+                        paddingHorizontal: Spacing * 2,
+                        marginTop: Spacing * 2,
+                    }}>
+                    <Text
+                        style={{
+                            fontSize: 24,
+                            fontFamily: Font["outfit-medium"],
+                            marginTop: Spacing * 2
+                        }}
+                    >
+                        Welcome Zenith
+                    </Text>
 
-                <Text
-                    style={{
-                        fontSize: 17,
-                        color: Colors.text,
-                        fontFamily: Font["outfit-regular"],
-                    }}
-                >
-                    Experience the best in class workspaces Elevate your work game today
-                </Text>
+                    <Text
+                        style={{
+                            fontSize: 17,
+                            color: Colors.text,
+                            fontFamily: Font["outfit-regular"],
+                        }}
+                    >
+                        Experience the best in class workspaces Elevate your work game today
+                    </Text>
+                </View>
             </View>
+
             <View
                 style={{
                     paddingHorizontal: Spacing * 2,
@@ -100,6 +94,22 @@ const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
             >
                 <View>
                     <View>
+                        <TextInput
+                            placeholder='Enter your Mobile Number'
+                            autoFocus={false}
+                            autoComplete='tel'
+                            keyboardType='phone-pad'
+                            textContentType='telephoneNumber'
+                            onChangeText={(phoneNumber) => setPhoneNumber(phoneNumber)}
+                            style={{
+                                borderWidth: 1,
+                                padding: Spacing,
+                                borderRadius: Spacing * 1.5,
+                                marginBottom: Spacing * 1.5,
+                                borderColor: Colors.text
+                            }}
+                        />
+
                         <TextInput
                             placeholder='Enter your Mobile Number'
                             autoFocus={false}
@@ -158,7 +168,7 @@ const WelcomeScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
                 }}
             >
                 <TouchableOpacity
-                    onPress={() => navigate("Register")}
+                    onPress={() => navigate("Visitor")}
                     style={{
                         padding: Spacing,
                     }}
