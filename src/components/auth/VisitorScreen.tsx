@@ -100,7 +100,7 @@ const VisitorScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
                 }}
             >
                 <TouchableOpacity
-                    onPress={() => navigate("Visitor")}
+                    onPress={() => { }}
                     style={styles.formButton}
                 >
                     <AntDIcons name="arrowright" size={40} color="black" />
