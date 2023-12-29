@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { View, StyleSheet, Dimensions, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Dimensions, Text, TextInput, TouchableOpacity, ImageBackground, Image } from "react-native";
 import { RootStackParamList } from "../../../types";
 import Spacing from "../../theme/Space";
 import Colors from "../../theme/Colors";
@@ -24,26 +24,43 @@ const VisitorScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
                 style={[
                     styles.box,
                 ]}>
-                <Text style={{
-                    fontSize: 30,
-                    fontFamily: Font["outfit-medium"],
-                    letterSpacing: 3,
-                    textTransform: "uppercase"
-                }}>
-                    Hola Hustler !
-                </Text>
-                <Text style={{
-                    fontSize: 20,
-                    fontFamily: Font["outfit-bold"],
-                }}>
-                    Here is your chance
-                </Text>
-                <Text style={{
-                    fontSize: 14,
-                    fontFamily: Font["outfit-medium"],
-                }}>
-                    unleash the best workspace and amazing community experience
-                </Text>
+                <ImageBackground source={require("../../../assets/dot-visitor.png")} resizeMode='cover'
+                    style={{
+                        paddingHorizontal: Spacing * 1.5,
+                        paddingVertical: Spacing * 1.5,
+                    }}>
+                    <Image source={require("../../../assets/ellipse.png")} style={[styles.boxTop]} resizeMode='cover' />
+                    <Image source={require("../../../assets/ellipse-bottom.png")} style={[styles.boxBottom]} resizeMode='cover' />
+                    <Text style={{
+                        fontSize: 24,
+                        fontFamily: Font["outfit-semibold"],
+                        letterSpacing: 7,
+                        marginLeft: -4,
+                        lineHeight: 25.5,
+                        textTransform: "uppercase",
+                    }}>
+                        Hola Hustler !
+                    </Text>
+                    <Text style={{
+                        fontSize: 17,
+                        fontFamily: Font["outfit-medium"],
+                        letterSpacing: 0.3,
+                        marginTop: 5,
+                        lineHeight: 25.5,
+                    }}>
+                        Here is your chance
+                    </Text>
+                    <Text style={{
+                        fontSize: 14,
+                        fontFamily: Font["outfit-regular"],
+                        letterSpacing: 0.3,
+                        marginTop: 5,
+                        color: "#474747",
+                        lineHeight: 19.2,
+                    }}>
+                        unleash the best workspace and amazing community experience
+                    </Text>
+                </ImageBackground>
             </View>
 
             <View>
@@ -81,7 +98,6 @@ const VisitorScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
                     autoFocus={false}
                     style={[styles.formInput]}
                 />
-
                 <Text style={[styles.formLabel]}>
                     Enter your Official e-mail address
                 </Text>
@@ -122,11 +138,21 @@ const styles = StyleSheet.create({
     },
     box: {
         backgroundColor: Colors.visitorBox,
-        height: 150,
         marginTop: Spacing * 3.5,
-        paddingHorizontal: Spacing * 1.5,
-        paddingVertical: Spacing * 1.5,
-        borderRadius: 20
+        borderRadius: 20,
+        alignContent: "space-between",
+        overflow: "hidden"
+    },
+    boxTop: {
+        position: "absolute",
+        right: 0,
+        marginTop: -7,
+        marginRight: -7
+    },
+    boxBottom: {
+        position: "absolute",
+        bottom: -50,
+        right: -20
     },
     formInput: {
         borderWidth: 1,
@@ -136,15 +162,16 @@ const styles = StyleSheet.create({
         borderColor: Colors.text
     },
     formHeader: {
-        fontSize: 24,
+        fontSize: 21,
         fontFamily: Font["outfit-medium"],
         marginTop: Spacing * 2,
         marginBottom: Spacing / 2
     },
     formLabel: {
-        fontSize: 14,
-        fontFamily: Font["outfit-medium"],
-        marginBottom: Spacing / 2
+        fontSize: 18,
+        fontFamily: Font["outfit-regular"],
+        marginBottom: Spacing / 2,
+        color: "#303030"
     },
     formButton: {
         alignSelf: "center",
